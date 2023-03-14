@@ -4,7 +4,7 @@
 func <- function(X)
 {
   return(cos(X))
-
+  
 }
 
 # parametric space = -pi to 3*pi
@@ -104,4 +104,28 @@ f.prime <- function(X)
   return(rtn)
 }
 
-current <- 
+current <- (pi/3)*2   # starting value
+t <- 0.3
+iter <- 0
+x.k <- current
+diff <- 100
+while (tol<diff && iter <100)
+{
+  iter <- iter + 1
+  update <- current + t*f.prime(current) 
+  x.k <- c(x.k, update)
+  diff <- abs(current - update)
+  current <- update
+}
+
+current  # final approximation to MLE
+evals <- sapply(x.k, func)
+points(x.k, evals, pch = 16, col = rgb(1,0,0, alpha = .5))
+
+
+
+
+
+
+
+########## queston 3
